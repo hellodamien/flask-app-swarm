@@ -5,16 +5,10 @@ app = Flask(__name__)
 
 # Function to check database connection
 def check_db_connection():
-    print("check_db_connection")
     db_host = os.environ.get('DB_HOST', 'localhost')
     db_user = os.environ.get('DB_USER', 'root')
     db_password = os.environ.get('DB_PASSWORD', '')
     db_name = os.environ.get('DB_NAME', 'test')
-
-    print("DB_HOST", db_host)
-    print("DB_USER", db_user)
-    print("DB_PASSWORD", db_password)
-    print("DB_NAME", db_name)
 
     try:
         connection = pymysql.connect(
@@ -25,10 +19,8 @@ def check_db_connection():
             cursorclass=pymysql.cursors.DictCursor
         )
         connection.close()
-        print("Connection OK")
         return True
     except Exception as e:
-        print("Connection KO")
         print("Failed to connect to database:", str(e))
         return False
 
